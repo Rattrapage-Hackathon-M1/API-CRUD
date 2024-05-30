@@ -42,7 +42,7 @@ public class PermissionsFilter implements Filter {
         Filter.super.init(filterConfig);
         whiteListMap.put("ROLE_ADMIN", adminMethodAllowed);
         whiteListMap.put("ROLE_EMPLOYE", modMethodAllowed);
-        whiteListMap.put("ROLE_USER", userMethodAllowed);
+        whiteListMap.put("ROLE_MANAGER", userMethodAllowed);
     }
 
     @Override
