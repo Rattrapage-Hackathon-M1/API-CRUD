@@ -29,12 +29,6 @@ public class PermissionsFilter implements Filter {
             "get-all-catalogues", "get-catalogue-by-id", "get-all-taches", "get-tache-by-id"
     };
 
-    private String[] modMethodAllowed = {
-            "nouveau-catalogue", "get-all-catalogues", "get-catalogue-by-id", "modifie-catalogue",
-            "nouveau-tache", "get-all-taches", "get-tache-by-id", "modifie-tache",
-            "nouveau-utilisateur", "get-utilisateur-by-id", "modifie-utilisateur", "modifie-utilisateur"
-    };
-
     private Map<String, String[]> whiteListMap = new HashMap<>();
 
     @Override
@@ -58,6 +52,9 @@ public class PermissionsFilter implements Filter {
         try {
             // Decode the payload
             final String[] tokenParts = jwtToken.split("\\.");
+            if (tokenParts.length < 2) {
+                throw new ResponseStatusException(HttpStatus.UNAUTHORIZED, "Invalid JWT token structure");
+            }
             final String encodedPayload = tokenParts[1];
             final byte[] decodedBytes = Base64.getUrlDecoder().decode(encodedPayload);
             final String decodedPayload = new String(decodedBytes, StandardCharsets.UTF_8);
@@ -89,7 +86,7 @@ public class PermissionsFilter implements Filter {
             if (allowed) {
                 filterChain.doFilter(servletRequest, servletResponse);
             } else {
-                logger.warn("Access forbidden for this role and method");
+                logger.warn("Access forbidden for this role and method: {}", uriParts[3]);
                 throw new ResponseStatusException(HttpStatus.FORBIDDEN, "Access forbidden for this role and method");
             }
 
