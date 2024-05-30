@@ -7,7 +7,6 @@ import fr.esgi.User_Task.domain.ports.api.TacheService;
 import fr.esgi.User_Task.domain.ports.Tache;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
-import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.*;
@@ -40,7 +39,6 @@ public class TacheController {
     }
 
     @PostMapping("/nouveau-tache")
-    @PreAuthorize("hasRole('ROLE_ADMIN') or hasRole('ROLE_EMPLOYE')")
     public ResponseEntity addTache(@RequestBody final InTacheDto body) {
         final Tache domain = this.mapper.inDtoToDomain(body);
         final Tache nouveauTache = this.tacheService.add(domain);

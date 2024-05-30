@@ -12,7 +12,7 @@ import java.io.IOException;
 import java.nio.charset.StandardCharsets;
 import java.util.*;
 
-public class PermissionsFilter implements Filter{
+public class PermissionsFilter implements Filter {
 
     private String[] adminMethodAllowed ={
             "nouveau-catalogue", "get-all-catalogues", "get-catalogue-by-id", "modifie-catalogue", "supprimer-catalogue",

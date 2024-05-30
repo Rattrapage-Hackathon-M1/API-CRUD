@@ -13,7 +13,7 @@ public class FilterConfiguration {
                 = new FilterRegistrationBean<>();
 
         registrationBean.setFilter(new PermissionsFilter());
-        registrationBean.addUrlPatterns("/api/utilisateur/*", "/api/tache/*");
+        registrationBean.addUrlPatterns("/api/utilisateur/*", "/api/taches/*");
 
         return registrationBean;
     }
