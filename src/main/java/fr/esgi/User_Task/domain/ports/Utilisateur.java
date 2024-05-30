@@ -13,7 +13,7 @@ public class Utilisateur {
     private Long id;
     private String nom;
     private String prenom;
-    private String email;
+    private String mail;
     private String password;
     private String roles;
     private List<Tache> taches = new ArrayList<>();
@@ -42,12 +42,12 @@ public class Utilisateur {
         this.prenom = prenom;
     }
 
-    public String getEmail() {
-        return email;
+    public String getMail() {
+        return mail;
     }
 
-    public void setEmail(String email) {
-        this.email = email;
+    public void setMail(String mail) {
+        this.mail = mail;
     }
 
     public String getPassword() {

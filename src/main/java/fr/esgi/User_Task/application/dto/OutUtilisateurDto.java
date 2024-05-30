@@ -7,7 +7,6 @@ import lombok.Data;
 public class OutUtilisateurDto {
     private Long id ;
     private String nom;
-    private String login;
     private String prenom;
     private String mail;
     private String password;
@@ -27,14 +26,6 @@ public class OutUtilisateurDto {
 
     public void setNom(String nom) {
         this.nom = nom;
-    }
-
-    public String getLogin() {
-        return login;
-    }
-
-    public void setLogin(String login) {
-        this.login = login;
     }
 
     public String getPrenom() {
