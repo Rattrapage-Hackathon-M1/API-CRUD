@@ -20,13 +20,12 @@ public class PermissionsFilter implements Filter {
     private static final Logger logger = LoggerFactory.getLogger(PermissionsFilter.class);
 
     private String[] adminMethodAllowed = {
-            "nouveau-catalogue", "get-all-catalogues", "get-catalogue-by-id", "modifie-catalogue", "supprimer-catalogue",
             "nouveau-tache", "get-all-taches", "get-tache-by-id", "modifie-tache", "supprimer-tache",
             "nouveau-utilisateur", "get-utilisateur-by-id", "modifie-utilisateur", "modifie-utilisateur"
     };
 
     private String[] userMethodAllowed = {
-            "get-all-catalogues", "get-catalogue-by-id", "get-all-taches", "get-tache-by-id"
+            "get-all-taches", "get-tache-by-id"
     };
 
     private Map<String, String[]> whiteListMap = new HashMap<>();
