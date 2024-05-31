@@ -74,7 +74,9 @@ public class PermissionsFilter implements Filter {
 
             boolean allowed = false;
             for (String role : jwtPayload.getRoles()) {
+                logger.info("Checking role: {}", role);
                 final String[] allowedMethods = whiteListMap.getOrDefault(role, new String[]{});
+                logger.info("Allowed methods: {}", Arrays.toString(allowedMethods));
                 if (Arrays.asList(allowedMethods).contains(uriParts[3])) {
                     allowed = true;
                     break;
