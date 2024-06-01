@@ -50,4 +50,12 @@ public class InTacheDto {
     public void setDone(boolean done) {
         isDone = done;
     }
+
+    public InTacheDto(String nom, String description, String dateDebut, String dateFin, boolean isDone) {
+        this.nom = nom;
+        this.description = description;
+        this.dateDebut = dateDebut;
+        this.dateFin = dateFin;
+        this.isDone = isDone;
+    }
 }
