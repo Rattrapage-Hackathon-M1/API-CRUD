@@ -7,6 +7,7 @@ import fr.esgi.User_Task.domain.ports.api.TacheService;
 import org.springframework.stereotype.Component;
 
 import javax.annotation.PostConstruct;
+import java.time.LocalDate;
 import java.util.Arrays;
 import java.util.List;
 
@@ -22,15 +23,15 @@ public class DataInitializer {
     }
 
     @PostConstruct
-    public void initData() {
-        List<InTacheDto> taches = Arrays.asList(
-                new InTacheDto("Tache 1", "Description 1", "2024-05-01", "2024-05-31", false),
-                new InTacheDto("Tache 2", "Description 2", "2024-06-01", "2024-06-30", false)
-        );
+public void initData() {
+    List<InTacheDto> taches = Arrays.asList(
+            new InTacheDto("Tache 1", "Description 1", LocalDate.parse("2021-01-01"), LocalDate.parse("2021-01-02"), false),
+            new InTacheDto("Tache 2", "Description 2", LocalDate.parse("2021-01-01"), LocalDate.parse("2021-01-02"), false)
+    );
 
-        taches.forEach(tacheDto -> {
-            Tache tache = mapper.inDtoToDomain(tacheDto);
-            tacheService.add(tache);
-        });
-    }
+    taches.forEach(tacheDto -> {
+        Tache tache = mapper.inDtoToDomain(tacheDto);
+        tacheService.add(tache);
+    });
+}
 }
