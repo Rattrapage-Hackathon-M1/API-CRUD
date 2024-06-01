@@ -6,7 +6,7 @@ import java.time.LocalDate;
 
 @Data
 public class InTacheDto {
-    private String nom;
+    private String titre;
     private String description;
     private LocalDate dateDebut;
     private LocalDate dateFin;
@@ -14,11 +14,11 @@ public class InTacheDto {
     private Long utilisateurId;
 
     public String getNom() {
-        return nom;
+        return titre;
     }
 
-    public void setNom(String nom) {
-        this.nom = nom;
+    public void setNom(String titre) {
+        this.titre = titre;
     }
 
     public String getDescription() {
@@ -54,8 +54,8 @@ public class InTacheDto {
         isDone = done;
     }
 
-    public InTacheDto(String nom, String description, LocalDate dateDebut, LocalDate dateFin, boolean isDone) {
-        this.nom = nom;
+    public InTacheDto(String titre, String description, LocalDate dateDebut, LocalDate dateFin, boolean isDone) {
+        this.titre = titre;
         this.description = description;
         this.dateDebut = dateDebut;
         this.dateFin = dateFin;
