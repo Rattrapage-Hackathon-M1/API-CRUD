@@ -5,6 +5,8 @@ import fr.esgi.User_Task.application.dto.tache.OutTacheDto;
 import fr.esgi.User_Task.application.mapper.TacheDtoToDomainMapper;
 import fr.esgi.User_Task.domain.ports.api.TacheService;
 import fr.esgi.User_Task.domain.ports.Tache;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
@@ -18,6 +20,7 @@ import java.util.stream.Collectors;
 public class TacheController {
     private final TacheDtoToDomainMapper mapper;
     private final TacheService tacheService;
+    Logger logger = LoggerFactory.getLogger(TacheController.class);
     public TacheController(TacheDtoToDomainMapper mapper, TacheService tacheService) {
         this.mapper = mapper;
         this.tacheService = tacheService;
@@ -36,6 +39,7 @@ public class TacheController {
 
     @GetMapping("/get-tache-by-id/{id}")
     public ResponseEntity<OutTacheDto> getOneById(@PathVariable Long id) {
+        logger.info("getOneById called with id: " + id);
         OutTacheDto tacheDto = this.mapper.domainToOutDto(this.tacheService.getOneTacheById(id));
         return new ResponseEntity<>(tacheDto, HttpStatus.OK);
     }
