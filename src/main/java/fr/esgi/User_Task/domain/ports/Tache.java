@@ -21,8 +21,8 @@ public class Tache {
     private String titre;
     private String description;
     private boolean isDone;
-    private LocalDate dateCreation;
-    private LocalDate updateDate;
+    private LocalDate dateDebut;
+    private LocalDate dateFin;
 
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "utilisateur_id")

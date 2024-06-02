@@ -46,24 +46,32 @@ public class TacheController {
 
 
     @PostMapping("/nouveau-tache")
-    public ResponseEntity addTache(@RequestBody final InTacheDto body) {
-        final Tache domain = this.mapper.inDtoToDomain(body);
-        final Tache nouveauTache = this.tacheService.add(domain);
-        if(nouveauTache == null) {
-            return new ResponseEntity(HttpStatus.INTERNAL_SERVER_ERROR);
+    public ResponseEntity<String> addTache(@RequestBody InTacheDto body) {
+        if (body.getDateDebut() == null || body.getDateFin() == null) {
+            return new ResponseEntity<>("Dates cannot be null", HttpStatus.BAD_REQUEST);
+        }
+
+        Tache domain = this.mapper.inDtoToDomain(body);
+        Tache nouveauTache = this.tacheService.add(domain);
+        if (nouveauTache == null) {
+            return new ResponseEntity<>(HttpStatus.INTERNAL_SERVER_ERROR);
         }
 
         return new ResponseEntity<>("Tâche ajoutée avec succès", HttpStatus.CREATED);
     }
 
     @PutMapping("/modifie-tache/{id}")
-    public ResponseEntity editTache(@RequestBody final Tache tache) {
-        final Tache tacheModifie = this.tacheService.updateTache(tache);
-        if(tacheModifie == null) {
-            return new ResponseEntity(HttpStatus.INTERNAL_SERVER_ERROR);
+    public ResponseEntity editTache(@RequestBody Tache tache) {
+        if (tache.getDateDebut() == null || tache.getDateFin() == null) {
+            return new ResponseEntity<>("Dates cannot be null", HttpStatus.BAD_REQUEST);
         }
 
-        return new ResponseEntity(HttpStatus.CREATED);
+        Tache tacheModifie = this.tacheService.updateTache(tache);
+        if (tacheModifie == null) {
+            return new ResponseEntity<>(HttpStatus.INTERNAL_SERVER_ERROR);
+        }
+
+        return new ResponseEntity<>(HttpStatus.CREATED);
     }
 
     @DeleteMapping("/supprimer-tache")
