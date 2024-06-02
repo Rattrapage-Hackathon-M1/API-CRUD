@@ -23,10 +23,10 @@ public class DataInitializer {
     }
 
     @PostConstruct
-public void initData() {
+    public void initData() {
     List<InTacheDto> taches = Arrays.asList(
-            new InTacheDto("Tache 1", "Description 1", LocalDate.parse("2021-01-01"), LocalDate.parse("2021-01-02"), false),
-            new InTacheDto("Tache 2", "Description 2", LocalDate.parse("2021-01-01"), LocalDate.parse("2021-01-02"), false)
+            new InTacheDto(1L, "Tache 1", "Description 1", LocalDate.now(), LocalDate.now().plusDays(1), false, 1L),
+            new InTacheDto(2L, "Tache 2", "Description 2", LocalDate.now(), LocalDate.now().plusDays(2), false, 1L)
     );
 
     taches.forEach(tacheDto -> {
