@@ -12,15 +12,20 @@ public class TacheEntity {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     private Long id;
+
     @Column(name = "titre")
     private String titre;
+
     @Column(name = "description")
     private String description;
-    @Column(name = "isDone")
+
+    @Column(name = "is_done")
     private boolean isDone;
-    @Column(name = "dateDebut")
+
+    @Column(name = "date_debut")
     private LocalDate dateDebut;
-    @Column(name = "dateFin")
+
+    @Column(name = "date_fin")
     private LocalDate dateFin;
 
     @Column(name = "utilisateur_id")
@@ -63,12 +68,12 @@ public class TacheEntity {
         this.description = description;
     }
 
-    public boolean isDone() {
+    public boolean getIsDone() {
         return isDone;
     }
 
-    public void setDone(boolean done) {
-        isDone = done;
+    public void setIsDone(boolean isDone) {
+        this.isDone = isDone;
     }
 
     public LocalDate getDateDebut() {

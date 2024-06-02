@@ -6,6 +6,7 @@ import fr.esgi.User_Task.domain.ports.spi.ITacheDao;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
+import java.util.Optional;
 
 @Service
 public class TacheService implements ITacheService {
@@ -27,6 +28,12 @@ public class TacheService implements ITacheService {
 
     @Override
     public Tache add(Tache tache) {
+        List<Tache> taches = this.iTacheDao.getAll();
+        for (Tache t : taches) {
+            if (t.getTitre().equals(tache.getTitre())) {
+                return null;
+            }
+        }
         return this.iTacheDao.add(tache);
     }
 

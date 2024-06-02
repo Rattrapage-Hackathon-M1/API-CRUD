@@ -1,6 +1,5 @@
 package fr.esgi.User_Task.application.controller;
 
-
 import fr.esgi.User_Task.application.dto.InUtilisateurDto;
 import fr.esgi.User_Task.application.dto.OutUtilisateurDto;
 import fr.esgi.User_Task.application.mapper.DtoToDomainUtilisateurMapper;
@@ -19,19 +18,19 @@ import java.util.stream.Collectors;
 public class UtilisateurController {
     private final DtoToDomainUtilisateurMapper mapper;
     private final UtilisateurService utilisateurService;
+
     public UtilisateurController(DtoToDomainUtilisateurMapper mapper, UtilisateurService utilisateurService) {
         this.mapper = mapper;
         this.utilisateurService = utilisateurService;
     }
 
     @PostMapping("/nouveau-utilisateur")
-    public ResponseEntity add(@RequestBody final InUtilisateurDto body) {
-
+    public ResponseEntity<OutUtilisateurDto> add(@RequestBody final InUtilisateurDto body) {
         final Utilisateur utilisateurAdded = utilisateurService.addUtilisateur(this.mapper.toDomain(body));
         if (utilisateurAdded == null) {
-            return new ResponseEntity(HttpStatus.INTERNAL_SERVER_ERROR);
+            return new ResponseEntity<>(HttpStatus.INTERNAL_SERVER_ERROR);
         }
-        return new ResponseEntity(this.mapper.toOutUtilisateurDto(utilisateurAdded),HttpStatus.CREATED);
+        return new ResponseEntity<>(this.mapper.toOutUtilisateurDto(utilisateurAdded), HttpStatus.CREATED);
     }
 
     @GetMapping("/get-all-utilisateurs")
@@ -39,35 +38,33 @@ public class UtilisateurController {
         List<Utilisateur> utilisateurs = this.utilisateurService.getAllUtilisateurs();
         return new ResponseEntity<>(utilisateurs.stream()
                 .map(this.mapper::toOutUtilisateurDto)
-                .collect(Collectors.toList()),
-                HttpStatus.OK);
+                .collect(Collectors.toList()), HttpStatus.OK);
     }
 
     @GetMapping("/get-utilisateur-by-id")
-    public ResponseEntity getById(@RequestParam final Long id) {
+    public ResponseEntity<OutUtilisateurDto> getById(@RequestParam final Long id) {
         final OutUtilisateurDto outDto = this.mapper.toOutUtilisateurDto(this.utilisateurService.getUtilisateurById(id));
-        return new ResponseEntity(outDto,HttpStatus.FOUND);
+        return new ResponseEntity<>(outDto, HttpStatus.OK);
     }
 
     @PutMapping("/modifie-utilisateur")
-    public ResponseEntity updateUtilisateur(@RequestBody final InUtilisateurDto inUtilisateurDto) {
+    public ResponseEntity<OutUtilisateurDto> updateUtilisateur(@RequestBody final InUtilisateurDto inUtilisateurDto) {
         final Utilisateur domain = this.mapper.toDomain(inUtilisateurDto);
-
         try {
             final Utilisateur updatedUtilisateur = this.utilisateurService.updateUtilisateur(domain);
-            return new ResponseEntity(this.mapper.toOutUtilisateurDto(updatedUtilisateur),HttpStatus.OK);
-        } catch (final Exception e){
-            return new ResponseEntity(e.getMessage(),HttpStatus.NOT_FOUND);
+            return new ResponseEntity<>(this.mapper.toOutUtilisateurDto(updatedUtilisateur), HttpStatus.OK);
+        } catch (final Exception e) {
+            return new ResponseEntity<>(HttpStatus.NOT_FOUND);
         }
     }
 
     @DeleteMapping("/supprimer-utilisateur")
-    public ResponseEntity deleteUtilisateur(@RequestParam final Long id) {
+    public ResponseEntity<Void> deleteUtilisateur(@RequestParam final Long id) {
         try {
             this.utilisateurService.deleteUtilisateur(id);
-            return new ResponseEntity(HttpStatus.OK);
-        } catch (final Exception e){
-            return new ResponseEntity(e.getMessage(),HttpStatus.NOT_FOUND);
+            return new ResponseEntity<>(HttpStatus.OK);
+        } catch (final Exception e) {
+            return new ResponseEntity<>(HttpStatus.NOT_FOUND);
         }
     }
 }

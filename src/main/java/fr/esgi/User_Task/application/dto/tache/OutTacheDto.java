@@ -1,5 +1,6 @@
 package fr.esgi.User_Task.application.dto.tache;
 
+import com.fasterxml.jackson.annotation.JsonFormat;
 import lombok.Data;
 
 import java.time.LocalDate;
@@ -9,7 +10,9 @@ public class OutTacheDto {
     private Long id;
     private String titre;
     private String description;
+    @JsonFormat(shape = JsonFormat.Shape.STRING, pattern = "yyyy-MM-dd")
     private LocalDate dateDebut;
+    @JsonFormat(shape = JsonFormat.Shape.STRING, pattern = "yyyy-MM-dd")
     private LocalDate dateFin;
     private boolean isDone;
     private Long utilisateurId;
@@ -54,11 +57,29 @@ public class OutTacheDto {
         this.dateFin = dateFin;
     }
 
-    public boolean isDone() {
+    public boolean getIsDone() {
         return isDone;
     }
 
-    public void setDone(boolean done) {
-        isDone = done;
+    public void setIsDone(boolean isDone) {
+        this.isDone = isDone;
+    }
+
+    public Long getUtilisateurId() {
+        return utilisateurId;
+    }
+
+    public void setUtilisateurId(Long utilisateurId) {
+        this.utilisateurId = utilisateurId;
+    }
+
+    public OutTacheDto(Long id, String titre, String description, LocalDate dateDebut, LocalDate dateFin, boolean isDone, Long utilisateurId) {
+        this.id = id;
+        this.titre = titre;
+        this.description = description;
+        this.dateDebut = dateDebut;
+        this.dateFin = dateFin;
+        this.isDone = isDone;
+        this.utilisateurId = utilisateurId;
     }
 }

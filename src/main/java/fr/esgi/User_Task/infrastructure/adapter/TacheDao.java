@@ -42,6 +42,22 @@ public class TacheDao implements ITacheDao {
     }
 
     @Override
+    public Tache findByTitre(String titre) {
+        final TacheEntity tacheEntity = this.tacheRepository.findByTitre(titre)
+                .orElseThrow(() -> new NoSuchElementException("Tache not found"));
+
+        return this.tacheDomainToEntityMapper.entityToDomain(tacheEntity);
+    }
+
+    @Override
+    public Tache getOneTacheByTitre(String titre) {
+        final TacheEntity tacheEntity = this.tacheRepository.findByTitre(titre)
+                .orElseThrow(() -> new NoSuchElementException("Tache not found"));
+
+        return this.tacheDomainToEntityMapper.entityToDomain(tacheEntity);
+    }
+
+    @Override
     public Tache add(final Tache tache) {
         final TacheEntity entity = this.tacheDomainToEntityMapper.domainToEntity(tache);
         return this.tacheDomainToEntityMapper.entityToDomain(this.tacheRepository.save(entity));

@@ -25,8 +25,11 @@ public class DataInitializer {
     @PostConstruct
     public void initData() {
     List<InTacheDto> taches = Arrays.asList(
-            new InTacheDto(1L, "Tache 1", "Description 1", LocalDate.now(), LocalDate.now().plusDays(1), false, 1L),
-            new InTacheDto(2L, "Tache 2", "Description 2", LocalDate.now(), LocalDate.now().plusDays(2), false, 1L)
+            new InTacheDto(1L, "Finir le CRUD", "Finir un crud c'est toujours plus sympa pour une démo non ?", LocalDate.now(), LocalDate.now().plusDays(1), false, 1L),
+            new InTacheDto(2L, "Brûler les CORS", "Les CORS étant un enfer, il faut les éradiquer.", LocalDate.now(), LocalDate.now().plusDays(5), false, 1L),
+            new InTacheDto(3L, "Faire un front", "Un front en React, c'est toujours plus sympa.", LocalDate.now().minusDays(3), LocalDate.now().plusDays(10), false, 1L),
+            new InTacheDto(4L, "Faire un back", "Un back en Java, c'est toujours plus sympa.", LocalDate.now().minusDays(3), LocalDate.now().plusDays(10), true, 1L),
+            new InTacheDto(5L, "Init Github", "Créer les répo gits", LocalDate.now().minusDays(3), LocalDate.now().minusDays(1), true, 1L)
     );
 
     taches.forEach(tacheDto -> {
