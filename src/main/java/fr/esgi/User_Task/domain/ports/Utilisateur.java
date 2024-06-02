@@ -1,18 +1,19 @@
 package fr.esgi.User_Task.domain.ports;
 
-import jakarta.persistence.*;
+import jakarta.persistence.GeneratedValue;
+import jakarta.persistence.GenerationType;
+import jakarta.persistence.Id;
 import lombok.*;
 
 import java.util.ArrayList;
-import java.util.HashSet;
 import java.util.List;
-import java.util.Set;
 
 @Data
 public class Utilisateur {
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
-    private String nom;
-    private String prenom;
+    private String username;
     private String mail;
     private String password;
     private String roles;
@@ -26,20 +27,12 @@ public class Utilisateur {
         this.id = id;
     }
 
-    public String getNom() {
-        return nom;
+    public String getUsername() {
+        return username;
     }
 
-    public void setNom(String nom) {
-        this.nom = nom;
-    }
-
-    public String getPrenom() {
-        return prenom;
-    }
-
-    public void setPrenom(String prenom) {
-        this.prenom = prenom;
+    public void setUsername(String username) {
+        this.username = username;
     }
 
     public String getMail() {

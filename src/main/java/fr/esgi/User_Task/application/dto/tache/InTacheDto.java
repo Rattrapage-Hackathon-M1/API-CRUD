@@ -1,5 +1,6 @@
 package fr.esgi.User_Task.application.dto.tache;
 
+import com.fasterxml.jackson.annotation.JsonFormat;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
@@ -14,12 +15,24 @@ public class InTacheDto {
     private Long id;
     private String titre;
     private String description;
+    @JsonFormat(shape = JsonFormat.Shape.STRING, pattern = "yyyy-MM-dd")
     private LocalDate dateDebut;
+    @JsonFormat(shape = JsonFormat.Shape.STRING, pattern = "yyyy-MM-dd")
     private LocalDate dateFin;
     private boolean isDone;
     private Long utilisateurId;
 
     public InTacheDto() {
+    }
+
+    public InTacheDto(Long id, String titre, String description, LocalDate dateDebut, LocalDate dateFin, boolean isDone, Long utilisateurId) {
+        this.id = id;
+        this.titre = titre;
+        this.description = description;
+        this.dateDebut = dateDebut;
+        this.dateFin = dateFin;
+        this.isDone = isDone;
+        this.utilisateurId = utilisateurId;
     }
 
     public Long getId() {
@@ -30,11 +43,11 @@ public class InTacheDto {
         this.id = id;
     }
 
-    public String getNom() {
+    public String getTitre() {
         return titre;
     }
 
-    public void setNom(String titre) {
+    public void setTitre(String titre) {
         this.titre = titre;
     }
 
@@ -66,17 +79,15 @@ public class InTacheDto {
         return isDone;
     }
 
-    public void setDone(boolean done) {
-        isDone = done;
+    public void setDone(boolean isDone) {
+        this.isDone = isDone;
     }
 
-    public InTacheDto(Long id, String titre, String description, LocalDate dateDebut, LocalDate dateFin, boolean isDone, Long utilisateurId) {
-        this.id = id;
-        this.titre = titre;
-        this.description = description;
-        this.dateDebut = dateDebut;
-        this.dateFin = dateFin;
-        this.isDone = isDone;
+    public Long getUtilisateurId() {
+        return utilisateurId;
+    }
+
+    public void setUtilisateurId(Long utilisateurId) {
         this.utilisateurId = utilisateurId;
     }
 }

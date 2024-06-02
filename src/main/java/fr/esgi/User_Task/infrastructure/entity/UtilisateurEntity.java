@@ -10,12 +10,8 @@ public class UtilisateurEntity {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
-    @Column(name = "nom")
-    private String nom;
-    @Column(name = "prenom")
-    private String prenom;
-    @Column(name = "login")
-    private String login;
+    @Column(name = "username")
+    private String username;
     @Column(name = "email")
     private String email;
     @Column(name = "password")
@@ -31,29 +27,14 @@ public class UtilisateurEntity {
         this.id = id;
     }
 
-    public String getNom() {
-        return nom;
+    public String getUsername() {
+        return username;
     }
 
-    public void setNom(String nom) {
-        this.nom = nom;
+    public void setUsername(String username) {
+        this.username = username;
     }
 
-    public String getPrenom() {
-        return prenom;
-    }
-
-    public void setPrenom(String prenom) {
-        this.prenom = prenom;
-    }
-
-    public String getLogin() {
-        return login;
-    }
-
-    public void setLogin(String login) {
-        this.login = login;
-    }
 
     public String getMail() {
         return email;

@@ -3,6 +3,8 @@ package fr.esgi.User_Task.infrastructure.entity;
 import jakarta.persistence.*;
 import lombok.Data;
 
+import java.time.LocalDate;
+
 @Data
 @Entity
 public class TacheEntity {
@@ -16,13 +18,26 @@ public class TacheEntity {
     private String description;
     @Column(name = "isDone")
     private boolean isDone;
-    @Column(name = "dateCreation")
-    private String dateCreation;
-    @Column(name = "updateDate")
-    private String updateDate;
+    @Column(name = "dateDebut")
+    private LocalDate dateDebut;
+    @Column(name = "dateFin")
+    private LocalDate dateFin;
 
     @Column(name = "utilisateur_id")
-    private Long utilisateur_id;
+    private Long utilisateurId;
+
+    public TacheEntity() {
+    }
+
+    public TacheEntity(Long id, String titre, String description, boolean isDone, LocalDate dateDebut, LocalDate dateFin, Long utilisateurId) {
+        this.id = id;
+        this.titre = titre;
+        this.description = description;
+        this.isDone = isDone;
+        this.dateDebut = dateDebut;
+        this.dateFin = dateFin;
+        this.utilisateurId = utilisateurId;
+    }
 
     public Long getId() {
         return id;
@@ -32,11 +47,11 @@ public class TacheEntity {
         this.id = id;
     }
 
-    public String getNom() {
+    public String getTitre() {
         return titre;
     }
 
-    public void setNom(String titre) {
+    public void setTitre(String titre) {
         this.titre = titre;
     }
 
@@ -48,35 +63,36 @@ public class TacheEntity {
         this.description = description;
     }
 
-    public boolean getIsDone() {
+    public boolean isDone() {
         return isDone;
     }
 
-    public void setIsDone(boolean isDone) {
-        this.isDone = isDone;
+    public void setDone(boolean done) {
+        isDone = done;
     }
 
-    public String getDateCreation() {
-        return dateCreation;
+    public LocalDate getDateDebut() {
+        return dateDebut;
     }
 
-    public void setDateCreation(String dateCreation) {
-        this.dateCreation = dateCreation;
+    public void setDateDebut(LocalDate dateDebut) {
+        this.dateDebut = dateDebut;
     }
 
-    public String getUpdateDate() {
-        return updateDate;
+    public LocalDate getDateFin() {
+        return dateFin;
     }
 
-    public void setUpdateDate(String updateDate) {
-        this.updateDate = updateDate;
+    public void setDateFin(LocalDate dateFin) {
+        this.dateFin = dateFin;
     }
 
-    public Long getUtilisateur_id() {
-        return utilisateur_id;
+    public Long getUtilisateurId() {
+        return utilisateurId;
     }
 
-    public void setUtilisateur_id(Long utilisateur_id) {
-        this.utilisateur_id = utilisateur_id;
+    public void setUtilisateurId(Long utilisateurId) {
+        this.utilisateurId = utilisateurId;
     }
+
 }
