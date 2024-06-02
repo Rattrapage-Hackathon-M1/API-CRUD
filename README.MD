@@ -96,10 +96,16 @@ src/
 
 ## Fonctionnalités CRUD
 
-### Authentification
+### Gestion des Autorisations
 
-- Génération et validation de tokens JWT.
-- Gestion des rôles des utilisateurs.
+#### Fonctionnement de l'Authentification et des Autorisations
+- L'API utilise un système d'authentification basé sur les JWT pour sécuriser les endpoints. Voici comment cela fonctionne :
+
+- Génération du JWT : Lorsqu'un utilisateur se connecte via l'API d'authentification, un JWT est généré et renvoyé au client. Ce JWT contient les informations de l'utilisateur, y compris ses rôles.
+
+- En-tête d'Autorisation : Pour accéder aux endpoints sécurisés, le client doit inclure le JWT dans l'en-tête Authorization de chaque requête HTTP sous la forme Bearer <JWT>.
+
+- Filtre de Permissions : Un filtre de permissions (PermissionsFilter) est appliqué aux requêtes pour vérifier le JWT et s'assurer que l'utilisateur a les autorisations nécessaires pour accéder à l'endpoint.
 
 ### Gestion des Tâches
 
@@ -126,89 +132,3 @@ src/
 - **POST /api/utilisateurs/nouveau-utilisateur** : Créer un nouvel utilisateur.
 - **PUT /api/utilisateurs/modifie-utilisateur/{id}** : Mettre à jour un utilisateur existant.
 - **DELETE /api/utilisateurs/supprimer-utilisateur/{id}** : Supprimer un utilisateur.
-
-## DTOs
-
-### InTacheDto
-
-```java
-package fr.esgi.User_Task.application.dto.tache;
-
-public class InTacheDto {
-    private String titre;
-    private String description;
-    private Long utilisateurId;
-
-    // Getters and setters
-}
-```
-
-### OutTacheDto
-
-```java
-package fr.esgi.User_Task.application.dto.tache;
-
-public class OutTacheDto {
-    private Long id;
-    private String titre;
-    private String description;
-    private Long utilisateurId;
-
-    // Getters and setters
-}
-```
-
-### InUtilisateurDto
-
-```java
-package fr.esgi.User_Task.application.dto.utilisateur;
-
-public class InUtilisateurDto {
-    private String username;
-    private String mail;
-    private String password;
-
-    // Getters and setters
-}
-```
-
-### OutUtilisateurDto
-
-```java
-package fr.esgi.User_Task.application.dto.utilisateur;
-
-import lombok.Data;
-
-@Data
-public class OutUtilisateurDto {
-    private Long id;
-    private String username;
-    private String mail;
-    private String password;
-    private String roles;
-
-    // Getters and setters
-}
-```
-
-### JwtPayload
-
-```java
-package fr.esgi.User_Task.application.dto.permission;
-
-import java.util.Date;
-import java.util.List;
-
-public class JwtPayload {
-    private String sub;
-    private List<String> roles;
-    private Date exp;
-    private Date iat;
-
-    // Getters and setters
-}
-```
-
----
-
-Ce README couvre les aspects essentiels de votre API CRUD, y compris l'installation, la structure du projet, les fonctionnalités et les endpoints disponibles.

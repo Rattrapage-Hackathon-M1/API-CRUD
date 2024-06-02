@@ -10,6 +10,9 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
+import java.util.List;
+import java.util.stream.Collectors;
+
 @RestController
 @RequestMapping("/api/utilisateur")
 @CrossOrigin(origins = "http://localhost:5173")
@@ -32,8 +35,12 @@ public class UtilisateurController {
     }
 
     @GetMapping("/get-all-utilisateurs")
-    public ResponseEntity getAll() {
-        return new ResponseEntity(this.utilisateurService.getAllUtilisateurs(),HttpStatus.OK);
+    public ResponseEntity<List<OutUtilisateurDto>> getAll() {
+        List<Utilisateur> utilisateurs = this.utilisateurService.getAllUtilisateurs();
+        return new ResponseEntity<>(utilisateurs.stream()
+                .map(this.mapper::toOutUtilisateurDto)
+                .collect(Collectors.toList()),
+                HttpStatus.OK);
     }
 
     @GetMapping("/get-utilisateur-by-id")

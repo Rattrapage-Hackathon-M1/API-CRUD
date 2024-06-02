@@ -2,33 +2,34 @@ package fr.esgi.User_Task.domain.ports.api;
 
 
 import fr.esgi.User_Task.domain.ports.Utilisateur;
-import fr.esgi.User_Task.infrastructure.adapter.UtilisateurDao;
+import fr.esgi.User_Task.domain.ports.spi.IUtilisateurDao;
 import org.springframework.stereotype.Service;
 
+import java.util.List;
 import java.util.NoSuchElementException;
 
 @Service
 public class UtilisateurService implements IUtilisateurService{
 
-    private final UtilisateurDao utilisateurDao;
-
-    public UtilisateurService(UtilisateurDao utilisateurDao) {
-        this.utilisateurDao = utilisateurDao;
+    private final IUtilisateurDao iUtilisateurDao;
+    
+    public UtilisateurService(IUtilisateurDao iUtilisateurDao) {
+        this.iUtilisateurDao = iUtilisateurDao;
     }
 
-    @Override
+                              @Override
     public Utilisateur addUtilisateur(Utilisateur utilisateur){
-        return utilisateurDao.addUtilisateur(utilisateur);
+        return iUtilisateurDao.addUtilisateur(utilisateur);
     }
 
     @Override
-    public Iterable<Utilisateur> getAllUtilisateurs() {
-        return utilisateurDao.getAllUtilisateurs();
+    public List<Utilisateur> getAllUtilisateurs() {
+        return this.iUtilisateurDao.getAllUtilisateurs();
     }
 
     @Override
     public Utilisateur getUtilisateurById(Long id) {
-        return utilisateurDao.getUtilisateurById(id);
+        return iUtilisateurDao.getUtilisateurById(id);
     }
 
     @Override
@@ -39,10 +40,10 @@ public class UtilisateurService implements IUtilisateurService{
             throw new NoSuchElementException("Utilisateur not found with ID: " + utilisateur.getId());
         }
 
-        return utilisateurDao.updateUtilisateur(utilisateur);
+        return iUtilisateurDao.updateUtilisateur(utilisateur);
     }
 
     @Override
     public void deleteUtilisateur(Long id) {
-        utilisateurDao.deleteUtilisateur(id); }
+        iUtilisateurDao.deleteUtilisateur(id); }
 }

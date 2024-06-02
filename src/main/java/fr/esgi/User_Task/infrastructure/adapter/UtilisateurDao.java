@@ -9,6 +9,7 @@ import org.springframework.http.HttpStatus;
 import org.springframework.stereotype.Service;
 import org.springframework.web.server.ResponseStatusException;
 
+import java.util.List;
 import java.util.NoSuchElementException;
 import java.util.Optional;
 
@@ -31,7 +32,7 @@ public class UtilisateurDao implements IUtilisateurDao {
     }
 
     @Override
-    public Iterable<Utilisateur> getAllUtilisateurs(){
+    public List<Utilisateur> getAllUtilisateurs(){
         return this.utilisateurRepository.findAll().stream()
                 .map(this.mapper::toDomain)
                 .toList();
