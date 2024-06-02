@@ -12,6 +12,7 @@ import org.springframework.web.bind.annotation.*;
 
 @RestController
 @RequestMapping("/api/utilisateur")
+@CrossOrigin(origins = "http://localhost:5173")
 public class UtilisateurController {
     private final DtoToDomainUtilisateurMapper mapper;
     private final UtilisateurService utilisateurService;
