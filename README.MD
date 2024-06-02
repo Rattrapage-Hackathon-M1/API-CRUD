@@ -115,6 +115,15 @@ src/
 
 - Création, lecture, mise à jour et suppression d'utilisateurs.
 
+### Gestion des Rôles
+
+- Les utilisateurs peuvent avoir un ou plusieurs rôles, qui déterminent les autorisations dont ils disposent.
+
+Exemple : Un utilisateur avec le rôle "ADMIN" peut accéder à tous les endpoints, tandis qu'un utilisateur avec le rôle "USER" peut seulement accéder à certains endpoints.
+Ici un rôle "USER" ne peut modifier que les tâches qu'il a créées.
+
+![img.png](img.png)
+
 ## Endpoints API CRUD
 
 ### Tâches
