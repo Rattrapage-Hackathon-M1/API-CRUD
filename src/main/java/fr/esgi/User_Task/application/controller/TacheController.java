@@ -34,10 +34,12 @@ public class TacheController {
         );
     }
 
-    @GetMapping("/get-tache-by-id")
-    public ResponseEntity getOneById(@RequestParam final Long id) {
-        return new ResponseEntity(this.mapper.domainToOutDto(this.tacheService.getOneTacheById(id)), HttpStatus.OK);
+    @GetMapping("/get-tache-by-id/{id}")
+    public ResponseEntity<OutTacheDto> getOneById(@PathVariable Long id) {
+        OutTacheDto tacheDto = this.mapper.domainToOutDto(this.tacheService.getOneTacheById(id));
+        return new ResponseEntity<>(tacheDto, HttpStatus.OK);
     }
+
 
     @PostMapping("/nouveau-tache")
     public ResponseEntity addTache(@RequestBody final InTacheDto body) {
@@ -50,7 +52,7 @@ public class TacheController {
         return new ResponseEntity(HttpStatus.CREATED);
     }
 
-    @PutMapping("/modifie-tache")
+    @PutMapping("/modifie-tache/{id}")
     public ResponseEntity editTache(@RequestBody final Tache tache) {
         final Tache tacheModifie = this.tacheService.updateTache(tache);
         if(tacheModifie == null) {
