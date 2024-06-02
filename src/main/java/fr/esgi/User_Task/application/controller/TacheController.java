@@ -53,7 +53,7 @@ public class TacheController {
             return new ResponseEntity(HttpStatus.INTERNAL_SERVER_ERROR);
         }
 
-        return new ResponseEntity(HttpStatus.CREATED);
+        return new ResponseEntity<>("Tâche ajoutée avec succès", HttpStatus.CREATED);
     }
 
     @PutMapping("/modifie-tache/{id}")
