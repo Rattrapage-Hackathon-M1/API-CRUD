@@ -31,6 +31,13 @@ public class UtilisateurDao implements IUtilisateurDao {
     }
 
     @Override
+    public Iterable<Utilisateur> getAllUtilisateurs(){
+        return this.utilisateurRepository.findAll().stream()
+                .map(this.mapper::toDomain)
+                .toList();
+    }
+
+    @Override
     public Utilisateur getUtilisateurById(final Long id){
         final UtilisateurEntity entityToFind = this.utilisateurRepository.findById(id).orElseThrow(
                 () -> new ResponseStatusException(HttpStatus.NOT_FOUND, "Utilisateur not found")

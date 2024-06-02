@@ -22,6 +22,11 @@ public class UtilisateurService implements IUtilisateurService{
     }
 
     @Override
+    public Iterable<Utilisateur> getAllUtilisateurs() {
+        return utilisateurDao.getAllUtilisateurs();
+    }
+
+    @Override
     public Utilisateur getUtilisateurById(Long id) {
         return utilisateurDao.getUtilisateurById(id);
     }

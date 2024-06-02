@@ -31,6 +31,11 @@ public class UtilisateurController {
         return new ResponseEntity(this.mapper.toOutUtilisateurDto(utilisateurAdded),HttpStatus.CREATED);
     }
 
+    @GetMapping("/get-all-utilisateurs")
+    public ResponseEntity getAll() {
+        return new ResponseEntity(this.utilisateurService.getAllUtilisateurs(),HttpStatus.OK);
+    }
+
     @GetMapping("/get-utilisateur-by-id")
     public ResponseEntity getById(@RequestParam final Long id) {
         final OutUtilisateurDto outDto = this.mapper.toOutUtilisateurDto(this.utilisateurService.getUtilisateurById(id));

@@ -11,4 +11,6 @@ public interface IUtilisateurDao {
     Utilisateur updateUtilisateur(Utilisateur utilisateur);
 
     void deleteUtilisateur(Long id);
+
+    Iterable<Utilisateur> getAllUtilisateurs();
 }
