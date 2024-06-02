@@ -2,13 +2,15 @@ package fr.esgi.User_Task.application.dto.tache;
 
 import lombok.Data;
 
+import java.time.LocalDate;
+
 @Data
 public class OutTacheDto {
     private Long id;
     private String titre;
     private String description;
-    private String dateDebut;
-    private String dateFin;
+    private LocalDate dateDebut;
+    private LocalDate dateFin;
     private boolean isDone;
     private Long utilisateurId;
 
@@ -37,18 +39,18 @@ public class OutTacheDto {
     }
 
     public String getDateDebut() {
-        return dateDebut;
+        return dateDebut.toString();
     }
 
-    public void setDateDebut(String dateDebut) {
+    public void setDateDebut(LocalDate dateDebut) {
         this.dateDebut = dateDebut;
     }
 
     public String getDateFin() {
-        return dateFin;
+        return dateFin.toString();
     }
 
-    public void setDateFin(String dateFin) {
+    public void setDateFin(LocalDate dateFin) {
         this.dateFin = dateFin;
     }
 

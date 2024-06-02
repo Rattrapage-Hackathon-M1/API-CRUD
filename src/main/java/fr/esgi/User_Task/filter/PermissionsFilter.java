@@ -23,8 +23,8 @@ public class PermissionsFilter implements Filter {
     };
 
     private String[] userMethodAllowed = {
-            "nouveau-tache", "get-all-taches", "get-tache-by-id", "modifie-tache", "supprimer-tache",
-            "nouveau-utilisateur", "get-utilisateur-by-id", "modifie-utilisateur", "modifie-utilisateur"
+            "nouveau-tache", "get-all-taches", "get-tache-by-id",
+            "nouveau-utilisateur", "get-utilisateur-by-id", "modifie-utilisateur",
     };
 
     private Map<String, String[]> whiteListMap = new HashMap<>();

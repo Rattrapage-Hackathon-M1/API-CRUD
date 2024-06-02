@@ -32,19 +32,19 @@ public class InTacheDto {
     public LocalDate getLocalDateDebut() {
         return dateDebut;
     }
-    
+
     public void setLocalDateDebut(LocalDate dateDebut) {
         this.dateDebut = dateDebut;
     }
-    
+
     public LocalDate getLocalDateFin() {
         return dateFin;
     }
-    
+
     public void setLocalDateFin(LocalDate dateFin) {
         this.dateFin = dateFin;
     }
-    
+
 
     public boolean isDone() {
         return isDone;
