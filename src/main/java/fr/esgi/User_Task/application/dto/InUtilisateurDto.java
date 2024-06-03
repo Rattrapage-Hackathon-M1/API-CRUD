@@ -1,16 +1,34 @@
 package fr.esgi.User_Task.application.dto;
 
-
 import lombok.Data;
+import lombok.NoArgsConstructor;
+import com.fasterxml.jackson.annotation.JsonCreator;
+import com.fasterxml.jackson.annotation.JsonProperty;
 
 @Data
+@NoArgsConstructor
 public class InUtilisateurDto {
-    private Long id ;
+    private Long id;
     private String username;
     private String mail;
     private String password;
     private String roles;
 
+    @JsonCreator
+    public InUtilisateurDto(
+            @JsonProperty("id") Long id,
+            @JsonProperty("username") String username,
+            @JsonProperty("mail") String mail,
+            @JsonProperty("password") String password,
+            @JsonProperty("roles") String roles) {
+        this.id = id;
+        this.username = username;
+        this.mail = mail;
+        this.password = password;
+        this.roles = roles;
+    }
+
+    // Getters and setters
     public Long getId() {
         return id;
     }

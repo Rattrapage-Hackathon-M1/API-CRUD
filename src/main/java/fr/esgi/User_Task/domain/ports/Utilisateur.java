@@ -1,22 +1,24 @@
 package fr.esgi.User_Task.domain.ports;
 
-import jakarta.persistence.GeneratedValue;
-import jakarta.persistence.GenerationType;
-import jakarta.persistence.Id;
+import jakarta.persistence.*;
 import lombok.*;
 
 import java.util.ArrayList;
 import java.util.List;
 
 @Data
+@Entity
 public class Utilisateur {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
+
     private String username;
     private String mail;
     private String password;
     private String roles;
+
+    @OneToMany(mappedBy = "utilisateur", cascade = CascadeType.ALL, orphanRemoval = true)
     private List<Tache> taches = new ArrayList<>();
 
     public Long getId() {
@@ -65,5 +67,15 @@ public class Utilisateur {
 
     public void setTaches(List<Tache> taches) {
         this.taches = taches;
+    }
+
+    public void addTache(Tache tache) {
+        taches.add(tache);
+        tache.setUtilisateur(this);
+    }
+
+    public void removeTache(Tache tache) {
+        taches.remove(tache);
+        tache.setUtilisateur(null);
     }
 }
